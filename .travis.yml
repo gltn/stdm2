@@ -8,5 +8,3 @@ branches:
 
 email:
   - gkahiu@gmail.com
-
-script: pytest
