@@ -4,7 +4,6 @@ python:
 branches:
   only:
     - master
-    - develop
 
 email:
   - gkahiu@gmail.com
