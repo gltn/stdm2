@@ -3,6 +3,7 @@ Authors and Contributors
 =================================
 
 Authors in alphabetical order:
+
 * Eric Omwandho <eomwandho@gmail.com>
 * John Gitau <gkahiu@gmail.com>
 * Koech Nicholas <koechnicholas@gmail.com>
