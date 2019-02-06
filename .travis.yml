@@ -7,20 +7,16 @@ env:
     - PLUGIN_NAME=stdm
     
 before_install:
-    # Pull from QGIS docker repository
-    - docker pull ${IMAGE}:${QGIS_VERSION_TAG}
-    
-install:
-    - docker run -d --name qgis-testing-environment -v ${TRAVIS_BUILD_DIR}:/tests_directory -e DISPLAY=:99 ${IMAGE}:{QGIS_VERSION_TAG}
-    - sleep 10 # This is required to allow xvfb to start
-    # Setup qgis and enables the plugin
-    - docker exec -it qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
-    # Fix the symlink created by qgis_setup.sh
-    - docker exec  -it qgis-testing-environment sh -c "rm -f  /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/${PLUGIN_NAME}"
-    - docker exec -it qgis-testing-environment sh -c "ln -s /tests_directory/ /root/.local/share/QGIS/QGIS3/profiles/default/python/plugins/${PLUGIN_NAME}"
+    - docker-compose up -d
+    - docker-compose ps
+    - sleep 10
+    - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
 
 script:
-    - docker exec -it qgis-testing-environment sh -c "cd /tests_directory && qgis_testrunner.sh tests.test_Plugin"
+    - docker-compose exec qgis-testing-environment sh -c "cd /tests_directory"
+    - docker version
+    - docker-compose version
+    - docker exec -it qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
   only:
