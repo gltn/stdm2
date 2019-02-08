@@ -11,4 +11,4 @@ class PluginTest(unittest.TestCase):
 def run_all():
     suite = unittest.TestSuite()
     suite.addTests(unittest.makeSuite(PluginTest))
-    unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite())
+    unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite)
