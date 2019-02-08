@@ -9,6 +9,6 @@ class PluginTest(unittest.TestCase):
         self.assertEqual(1, 1)
 
 def run_all():
-    suite = unittest.testSuite()
+    suite = unittest.TestSuite()
     suite.addTests(unittest.makeSuite(PluginTest))
     unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite())
