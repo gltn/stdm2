@@ -2,21 +2,22 @@ services:
     - docker
     
 env:
-    - IMAGE=qgis/qgis
-    - QGIS_VERSION_TAG=final-3_4_4
-    - PLUGIN_NAME=stdm
+    global:
+        - IMAGE=qgis/qgis
+        - QGIS_VERSION_TAG=final-3_4_4
+        - PLUGIN_NAME=stdm
     
 before_install:
     - docker-compose up -d
     - docker-compose ps
     - sleep 10
-    - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
+    - docker-compose exec qgis sh -c "qgis_setup.sh ${PLUGIN_NAME}"
 
 script:
-    - docker-compose exec qgis-testing-environment sh -c "cd /tests_directory"
+    - docker-compose exec qgis sh -c "cd /tests_directory"
     - docker version
     - docker-compose version
-    - docker exec -it qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
+    - docker exec -it qgis sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
   only:
