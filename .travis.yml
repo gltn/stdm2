@@ -1,8 +1,12 @@
+sudo: required
+
 services: 
     - docker
     
 env:
     global:
+        - DOCKER_VERSION=1.13.1-0~ubuntu-trusty
+        - DOCKER_COMPOSE_VERSION=1.23.2
         - QGIS_IMAGE=qgis/qgis
         - QGIS_VERSION_TAG=final-3_4_4
         - PLUGIN_NAME=stdm
@@ -10,6 +14,15 @@ env:
         - PG_VERSION_TAG=10
     
 before_install:
+    - sudo apt-get update
+    - apt-cache madison docker-engine
+    - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
+    - sudo rm -f /usr/local/bin/docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - chmod +x docker-compose
+    - sudo mv docker-compose /usr/local/bin
+    - docker version
+    - docker-compose version
     - docker-compose up -d
     - docker-compose ps
     - sleep 10
@@ -17,8 +30,6 @@ before_install:
 
 script:
     - docker-compose exec qgis-testing-environment sh -c "cd /tests_directory"
-    - docker version
-    - docker-compose version
     - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
