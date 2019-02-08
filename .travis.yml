@@ -17,7 +17,7 @@ script:
     - docker-compose exec qgis-testing-environment sh -c "cd /tests_directory"
     - docker version
     - docker-compose version
-    - docker exec -it qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
+    - docker-compose exec -it qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
   only:
