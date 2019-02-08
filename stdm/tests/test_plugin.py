@@ -8,11 +8,7 @@ class PluginTest(unittest.TestCase):
     def test_general(self):
         self.assertEqual(1, 1)
 
-def suite():
+def run_all():
     suite = unittest.testSuite()
     suite.addTests(unittest.makeSuite(PluginTest))
-
-    return suite
-
-def run_all():
     unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite())
