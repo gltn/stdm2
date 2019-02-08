@@ -1,8 +1,14 @@
 version: '3'
 
 services:
+  stdm-db:
+    image: ${PG_IMAGE}:${PG_VERSION_TAG}
+    environment:
+        DISPLAY: ':99'
+        QT_X11_NO_MITSHM: '1'
+    
   qgis-testing-environment:
-    image: ${IMAGE}:${QGIS_VERSION_TAG}
+    image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
     volumes:
         - /tmp/.X11-unix:/tmp/.X11-unix
         - ./:/tests_directory

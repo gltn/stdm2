@@ -3,9 +3,11 @@ services:
     
 env:
     global:
-        - IMAGE=qgis/qgis
+        - QGIS_IMAGE=qgis/qgis
         - QGIS_VERSION_TAG=final-3_4_4
         - PLUGIN_NAME=stdm
+        - PG_IMAGE=mdillon/postgis
+        - PG_VERSION_TAG=10
     
 before_install:
     - docker-compose up -d
