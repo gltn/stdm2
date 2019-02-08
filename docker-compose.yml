@@ -4,8 +4,8 @@ services:
   stdm-db:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
     environment:
-        DISPLAY: ':99'
-        QT_X11_NO_MITSHM: '1'
+        POSTGRES_PASSWORD: 'stdmtest'
+        POSTGRES_DB: 'stdm'
     
   qgis-testing-environment:
     image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
@@ -15,3 +15,7 @@ services:
     environment:
         DISPLAY: ':99'
         QT_X11_NO_MITSHM: '1'
+    links:
+        - stdm-db
+    depends-on:
+        - stdm-db
