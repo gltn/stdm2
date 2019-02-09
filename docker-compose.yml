@@ -17,5 +17,4 @@ services:
         QT_X11_NO_MITSHM: '1'
     links:
         - stdm-db
-    depends-on:
-        - stdm-db
+    
