@@ -5,9 +5,17 @@ import os
 
 import psycopg2
 
+
 class PluginTest(unittest.TestCase):
+    def setUp(self):
+        self.conn = psycopg2.connect("dbname=test user=postgres")
+
     def test_general(self):
         self.assertEqual(1, 1)
+
+    def tearDown(self):
+        self.conn.close()
+
 
 def run_all():
     suite = unittest.TestSuite()
