@@ -3,6 +3,7 @@ import sys
 import utils
 import os
 
+import psycopg2
 
 class PluginTest(unittest.TestCase):
     def test_general(self):

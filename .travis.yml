@@ -10,8 +10,6 @@ addons:
     
 env:
     global:
-        - DOCKER_VERSION=1.13.1-0~ubuntu-trusty
-        - DOCKER_COMPOSE_VERSION=1.23.2
         - QGIS_IMAGE=qgis/qgis
         - QGIS_VERSION_TAG=final-3_4_4
         - PLUGIN_NAME=stdm
