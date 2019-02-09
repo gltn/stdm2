@@ -3,6 +3,11 @@ sudo: required
 services: 
     - docker
     
+addons:
+  apt:
+    packages:
+      - docker-ce
+    
 env:
     global:
         - DOCKER_VERSION=1.13.1-0~ubuntu-trusty
@@ -14,12 +19,6 @@ env:
         - PG_VERSION_TAG=10
     
 before_install:
-    - echo "deb https://packages.docker.com/1.13/apt/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
-    - sudo apt-get update && sudo apt-get upgrade docker-engine
-    - sudo rm -f /usr/local/bin/docker-compose
-    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-    - chmod +x docker-compose
-    - sudo mv docker-compose /usr/local/bin
     - docker version
     - docker-compose version
     - docker-compose up -d
