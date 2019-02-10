@@ -8,7 +8,7 @@ import psycopg2
 
 class PluginTest(unittest.TestCase):
     def setUp(self):
-        self.conn = psycopg2.connect("dbname=test user=postgres")
+        self.conn = psycopg2.connect('')
 
     def test_general(self):
         self.assertEqual(1, 1)

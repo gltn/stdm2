@@ -4,6 +4,11 @@ x-common-env-vars:
     &common-env
     POSTGRES_PASSWORD: 'stdmtest'
     POSTGRES_DB: 'stdm'
+    PGHOST: stdm-db
+    PGPORT: 5432
+    PGDATABASE: stdm
+    PGUSER: postgres
+    PGPASSWORD: stdmtest
 
 services:
   stdm-db:
