@@ -13,7 +13,6 @@ x-common-env-vars:
 services:
   stdm-db:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
-    restart: always
     expose:
         - 5432
     environment: *common-env
