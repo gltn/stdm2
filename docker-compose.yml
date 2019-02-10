@@ -13,12 +13,10 @@ x-common-env-vars:
 services:
   stdm-db:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
-    expose:
-        - 5432
+    restart: always
     environment: *common-env
     
   qgis-testing-environment:
-    restart: always
     image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
     volumes:
         - /tmp/.X11-unix:/tmp/.X11-unix
