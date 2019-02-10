@@ -1,11 +1,14 @@
-version: '2'
+version: '3.4'
+
+x-common-env-vars:
+    &common-env
+    POSTGRES_PASSWORD: 'stdmtest'
+    POSTGRES_DB: 'stdm'
 
 services:
   stdm-db:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
-    environment:
-        POSTGRES_PASSWORD: 'stdmtest'
-        POSTGRES_DB: 'stdm'
+    environment: *common-env
     
   qgis-testing-environment:
     image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
@@ -13,6 +16,7 @@ services:
         - /tmp/.X11-unix:/tmp/.X11-unix
         - ./:/tests_directory
     environment:
+        << : *common-env
         DISPLAY: ':99'
         QT_X11_NO_MITSHM: '1'
     links:
