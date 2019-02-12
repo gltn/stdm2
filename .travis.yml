@@ -23,7 +23,7 @@ before_install:
     - sleep 10
 
 script:
-    - docker-compose exec stdm-db sh -c "psql -l"
+    - docker-compose exec stdm-db sh -c "psql -U postgres \l"
     
 branches:
   only:
