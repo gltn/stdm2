@@ -13,4 +13,5 @@ services:
   stdm-db:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
     restart: always
+    environment: *common-env
     
