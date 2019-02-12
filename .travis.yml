@@ -22,9 +22,7 @@ before_install:
     - docker-compose up -d
     - docker-compose ps
     - sleep 10
-    - docker-compose exec stdm-db sh -c "cd /docker_config"
-    - docker-compose exec stdm-db sh -c "ls"
-    
+    - docker-compose exec stdm-db sh -c "/db_init.sh"
 
 script:
     - docker-compose exec stdm-db sh -c "psql -l"

@@ -15,5 +15,5 @@ services:
     restart: always
     environment: *common-env
     volumes:
-        - ./docker_config:/docker_config
+        - ./docker_config/db_init.sh:/db_init.sh
     
