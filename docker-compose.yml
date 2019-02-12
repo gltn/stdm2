@@ -13,3 +13,17 @@ services:
     restart: always
     environment: *common-env
     
+qgis-testing-environment:
+    image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
+    volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - ./:/tests_directory
+    environment:
+        << : *common-env
+        DISPLAY: ':99'
+        QT_X11_NO_MITSHM: '1'
+        PGHOST: stdm-db
+        PGDATABASE: stdm
+    links:
+        - stdm-db
+    
