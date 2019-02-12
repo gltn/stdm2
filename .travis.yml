@@ -13,7 +13,7 @@ env:
         - PLUGIN_NAME=stdm
         - PG_IMAGE=mdillon/postgis
         - PG_VERSION_TAG=10
-        - DOCKER_USER_DIR=docker_init
+        - DOCKER_USER_DIR=docker_config
         - DOCKER_QGIS_TEST_DIR=tests_directory
     
 before_install:
@@ -22,7 +22,7 @@ before_install:
     - docker-compose up -d
     - docker-compose ps
     - sleep 10
-    - docker-compose exec stdm-db sh -c "cd /${DOCKER_USER_DIR}"
+    - docker-compose exec stdm-db sh -c "cd /docker_config"
     - docker-compose exec stdm-db sh -c "ls"
     
 
