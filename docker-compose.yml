@@ -17,15 +17,3 @@ services:
     volumes:
         - ./docker/:/${DOCKER_USER_DIR}
     
-  qgis-testing-environment:
-    image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
-    volumes:
-        - /tmp/.X11-unix:/tmp/.X11-unix
-        - ./:/${DOCKER_QGIS_TEST_DIR}
-    environment:
-        << : *common-env
-        DISPLAY: ':99'
-        QT_X11_NO_MITSHM: '1'
-    links:
-        - stdm-db
-    
