@@ -19,9 +19,9 @@ env:
 before_install:
     - docker version
     - docker-compose version
+    - docker-compose logs stdm-db
     - docker-compose up -d
     - docker-compose ps
-    - df -h
     - sleep 10
     - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
 

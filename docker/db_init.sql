@@ -1,2 +1,2 @@
 -- Create STDM database with PostGIS extension
-CREATE DATABASE stdm;
+CREATE DATABASE stdm ENCODING 'LATIN1';
