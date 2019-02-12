@@ -15,6 +15,8 @@ services:
     image: ${PG_IMAGE}:${PG_VERSION_TAG}
     restart: always
     environment: *common-env
+    volumes:
+        - ./docker/db_init.sql:/docker-entrypoint-initdb.d/init.sql
     
   qgis-testing-environment:
     image: ${QGIS_IMAGE}:${QGIS_VERSION_TAG}
