@@ -23,8 +23,8 @@ services:
         DISPLAY: ':99'
         QT_X11_NO_MITSHM: '1'
         PGHOST: stdm-db
-        PGDATABASE: stdm1
-        PGPASSWORD: postgre
+        PGDATABASE: stdm
+        
     links:
         - stdm-db
     
