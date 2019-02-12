@@ -15,5 +15,5 @@ services:
     restart: always
     environment: *common-env
     volumes:
-        - ./docker/:/${DOCKER_USER_DIR}
+        - ./docker:/${DOCKER_USER_DIR}
     
