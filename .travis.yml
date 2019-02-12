@@ -15,6 +15,8 @@ env:
         - PLUGIN_NAME=stdm
         - PG_IMAGE=mdillon/postgis
         - PG_VERSION_TAG=10
+        - DOCKER_USER_DIR=docker_init
+        - DOCKER_QGIS_TEST_DIR=tests_directory
     
 before_install:
     - docker version
@@ -22,11 +24,13 @@ before_install:
     - docker-compose up -d
     - docker-compose ps
     - sleep 10
+    - docker-compose exec stdm-db sh -c "cd /${DOCKER_USER_DIR}
+    - docker-compose exec stdm-db sh -c "db_init.sh"
     - docker-compose exec stdm-db sh -c "psql -l"
     - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
 
 script:
-    - docker-compose exec qgis-testing-environment sh -c "cd /tests_directory"
+    - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
     - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
