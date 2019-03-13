@@ -25,8 +25,8 @@ before_install:
 
 script:
     - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
+    - sleep 10
     - docker-compose exec qgis-testing-environment sh -c "ls"
-    - docker-compose exec qgis-testing-environment sh -c "pwd"
     - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
     
 branches:
