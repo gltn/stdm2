@@ -22,6 +22,8 @@ before_install:
     - docker-compose ps
     - sleep 10
     - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
+    
+install:
     - docker-compose exec qgis-testing-environment sh -c "mkdir test_cd"
     - docker-compose exec qgis-testing-environment sh -c "ls"
 
