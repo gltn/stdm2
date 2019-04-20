@@ -1,0 +1,53 @@
+
+
+// install python and pip (python package manager)
+pip install Sphinx
+sphinx-quickstart
+
+sphinx-build -b <format> <sourceDir> <builddir>
+sphinx-build -nWT -b dummy . _build/html
+
+#1
+
+sudo: false
+cache: pip3
+
+install: "pip3 install sphinx~=1.5.3"
+script: sphinx-build -nWT -b dummy . _build/html
+
+#
+
+#2
+language: python
+branches:
+  only:
+  - master
+python:
+- '3.6'
+node_js: 6
+install:
+- pip install -U pip
+- pip install -r requirements.txt
+script:
+- make html
+after_success:
+  #test the docs
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $token # set in the Travis dashboard
+  local_dir: build/html
+  on:
+    branch: master
+  notifications:
+    email:
+      recipients:
+        - one@example.com # your email here
+      on_success: never
+      on_failure: always
+
+#
+
+Folder structure - docs/ stdm/ 
+Outputs
+Unitests

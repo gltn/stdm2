@@ -1,3 +1,15 @@
+sudo: false
+
+language: python
+
+python:
+  - "2.7"
+  - "3.6"
+
+branches:
+  only:
+    - master
+
 services: 
     - docker
     
@@ -24,14 +36,56 @@ before_install:
     - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
     - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
 
+install:
+    - pip3 install -U pip
+    - pip3 install -r requirements.txt
+
+# coveralls test
+before_script:
+  - pip install -r test_requirements.txt --use-mirrors
+  - git clone https://github.com/z4r/python-coveralls-example.git
+  - cd python-coveralls-example
+  - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
+  - py.test example/tests.py --cov=example
+  - cd -
+
 script:
     - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
     - docker-compose exec qgis-testing-environment sh -c "black --check stdm"
     - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
-    
-branches:
-  only:
-    - master
+    # environment variables are exposed to container:
+    - docker-compose exec -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" -e TRAVIS_BRANCH="$TRAVIS_BRANCH" ...
+    "stdm2 clean coverage test"
+    # sphinx
+    - make html
 
+after_success:
+    # test the docs
+    # add coveralls
+    - coveralls    
+    "stdm2 coveralls"
+    # badges
+
+# sphinx
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $token # set in the Travis dashboard
+    local_dir: build/html
+    on:
+      tags: true
+      branch: master
+    notifications:
+      email:
+        recipients:
+          - kngeno.kevin@gmail.com
+        on_success: never
+        on_failure: always
+      
 email:
-  - gkahiu@gmail.comg
+    - gkahiu@gmail.com
+
+notifications:
+  email:
+    recipients:
+      - kngeno.kevin@gmail.com
