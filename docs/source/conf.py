@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'stdm2'
-copyright = "2019, Kevin Ng'eno"
-author = "Kevin Ng'eno"
+copyright = '2019, kngeno'
+author = 'kngeno'
 
 # The full version, including alpha/beta/rc tags
 release = '2.0'
