@@ -1,6 +1,6 @@
 import unittest
 import sys
-import utils
+# import utils
 import os
 
 import psycopg2
