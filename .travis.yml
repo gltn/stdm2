@@ -8,11 +8,18 @@ python:
 install:
 - pip install -U pip
 - pip install -r requirements.txt
+- pip install pytest
+- pip install pytest-cov
+- pip install coveralls
 script:
 - sphinx-build -Wv docs/source docs/build/html
+"stdm clean coverage test"
+- pytest --cov=stdm/
 
 after_success:
   #test the docs
+  "stdm coveralls"
+  - coveralls
 
 deploy:
   provider: pages
