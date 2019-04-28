@@ -14,8 +14,10 @@ install:
 script:
   - sphinx-build -Wv docs/source docs/build/html
   - py.test
-  #- coverage run --source=stdm/
-
+  #- coverage run --source=stdm/ -m py.test
+  - pytest --cov=stdm/hello/
+  - coverage report -m
+  - nosetests --with-coverage # Add me to run nose with coverage support.
 after_success:
   # test the docs
 
