@@ -25,5 +25,5 @@ deploy:
     email:
       recipients:
         - kngeno.kevin@gmail.com # your email here
-      on_success: never
+      on_success: always
       on_failure: always
