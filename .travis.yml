@@ -19,7 +19,7 @@ script:
   #- py.test
   #- coverage report -m
   #- nosetests --with-coverage # Add me to run nose with coverage support.
-  "check coverage tests"
+  "check coverage tests and reports"
 after_success:
   # test the docs
 
