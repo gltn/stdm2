@@ -14,8 +14,12 @@ install:
 script:
   - sphinx-build -Wv docs/source docs/build/html
   #- py.test --doctest-modules --cov . # commented to pass
-  - coverage report -m
-  - nosetests --with-coverage # Add me to run nose with coverage support.
+  #- py.test --cov-report term-missing --cov=maths
+  #- py.test --doctest-modules --cov=maths3 --cov-report term-missing
+  #- py.test
+  #- coverage report -m
+  #- nosetests --with-coverage # Add me to run nose with coverage support.
+  "check coverage tests"
 after_success:
   # test the docs
 
