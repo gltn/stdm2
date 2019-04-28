@@ -9,14 +9,15 @@ install:
 - pip install -U pip
 - pip install -r requirements.txt
 script:
-cd docs/
-- make html
+- sphinx-build -Wv docs/source docs/build/html
+
 after_success:
   #test the docs
+
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $token # set in the Travis dashboard
+  github_token: $STDM_TOKEN # set in the Travis dashboard
   local_dir: docs/build/html
   on:
     branch: master
