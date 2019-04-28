@@ -45,7 +45,7 @@ deploy:
       on_failure: always
 
 email:
-    #- gkahiu@gmail.com
+    
     - kngeno.kevin@gmail.com
 
 notifications:
