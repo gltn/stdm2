@@ -3,34 +3,35 @@ branches:
   only:
   - master
 python:
-- '3.6'
+  - '3.6'
 
 install:
-- pip install -U pip
-- pip install -r requirements.txt
-- pip install pytest
-- pip install pytest-cov
-- pip install coveralls
+  - pip install -U pip
+  - pip install -r requirements.txt
+  - pip install pytest
+  - pip install pytest-cov
+  - pip install coveralls
 script:
-- sphinx-build -Wv docs/source docs/build/html
-"stdm clean coverage test"
-- pytest --cov=stdm/
+  - sphinx-build -Wv docs/source docs/build/html
+
+  - coverage run --source=stdm/
 
 after_success:
-  #test the docs
-  "stdm coveralls"
+  # test the docs
+
+  # send coverage report to coveralls
   - coveralls
 
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $STDM_TOKEN # set in the Travis dashboard
+  github_token: $STDM_TOKEN # set in the travis dashboard
   local_dir: docs/build/html
   on:
     branch: master
   notifications:
     email:
       recipients:
-        - kngeno.kevin@gmail.com # your email here
+        - kngeno.kevin@gmail.com
       on_success: always
       on_failure: always
