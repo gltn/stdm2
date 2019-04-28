@@ -13,8 +13,8 @@ install:
   - pip install coveralls
 script:
   - sphinx-build -Wv docs/source docs/build/html
-
-  - coverage run --source=stdm/
+  - py.test
+  #- coverage run --source=stdm/
 
 after_success:
   # test the docs
