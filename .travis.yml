@@ -27,16 +27,29 @@ after_success:
   # send coverage report to coveralls
   - coveralls
 
+# sphinx github pages io
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $STDM_TOKEN # set in the travis dashboard
   local_dir: docs/build/html
   on:
+    tags: true
     branch: master
   notifications:
     email:
       recipients:
         - kngeno.kevin@gmail.com
+        #- gkahiu@gmail.com
       on_success: always
       on_failure: always
+
+email:
+    #- gkahiu@gmail.com
+    - kngeno.kevin@gmail.com
+
+notifications:
+  email:
+    recipients:
+      #- gkahiu@gmail.com
+      - kngeno.kevin@gmail.com
