@@ -51,3 +51,97 @@ deploy:
 Folder structure - docs/ stdm/ 
 Outputs
 Unitests
+
+#3
+sudo: false
+language: python
+branches:
+    only:
+    - master
+python:
+  - '3.6'
+
+branches:
+  only:
+    - master
+
+services: 
+    - docker
+    
+addons:
+  apt:
+    packages:
+      - docker-ce
+    
+env:
+    global:
+        - QGIS_IMAGE=qgis/qgis
+        - QGIS_VERSION_TAG=final-3_4_4
+        - PLUGIN_NAME=stdm
+        - PG_IMAGE=gkahiu/docker-postgis-stdm
+        - PG_VERSION_TAG=10
+        - DOCKER_QGIS_TEST_DIR=tests_directory
+
+before_install:
+    - docker version
+    - docker-compose version
+    - docker-compose up -d
+    - docker-compose ps
+    - sleep 10
+    - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
+    - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
+
+install:
+  - pip3 install -U pip
+  - pip3 install -r requirements.txt
+  - pip3 install pytest
+  - pip3 install pytest-cov
+  - pip3 install coveralls
+
+before_script:
+
+script:
+  - sphinx-build -Wv docs/source docs/build/html
+  - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
+  - docker-compose exec qgis-testing-environment sh -c "black --check stdm"
+  - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
+  #- py.test --doctest-modules --cov . # commented to pass
+  #- py.test --cov-report term-missing --cov=maths
+  #- py.test --doctest-modules --cov=maths3 --cov-report term-missing
+  #- py.test
+  - py.test --cov
+  #- coverage report -m
+  #- nosetests --with-coverage # Add me to run nose with coverage support.
+  "check coverage tests and reports"
+after_success:
+  # test the docs
+
+  # send coverage report to coveralls
+  - coveralls
+
+# sphinx github pages io
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $STDM_TOKEN # set in the travis dashboard
+  local_dir: docs/build/html
+  on:
+    tags: true
+    branch: master
+  notifications:
+    email:
+      recipients:
+        - kngeno.kevin@gmail.com
+        #- gkahiu@gmail.com
+      on_success: always
+      on_failure: always
+
+email:
+    
+    - kngeno.kevin@gmail.com
+
+notifications:
+  email:
+    recipients:
+      #- gkahiu@gmail.com
+      - kngeno.kevin@gmail.com
