@@ -1,4 +1,5 @@
 sudo: false
+
 language: python
 
 python:
@@ -35,11 +36,11 @@ python:
 #     - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
 
 install:
-  - pip3 install -U pip
-  - pip3 install -r requirements.txt
-  - pip3 install pytest
-  - pip3 install pytest-cov
-  - pip3 install coveralls
+  - pip install -U pip
+  - pip install -r requirements.txt
+  - pip install pytest
+  - pip install pytest-cov
+  - pip install coveralls
 
 before_script:
 
@@ -48,7 +49,7 @@ script:
   # - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
   # - docker-compose exec qgis-testing-environment sh -c "black --check stdm"
   # - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
-  - py.test stdm/hello/test_meter.py
+  # - py.test --cov=stdm/hello/test_meter.py
   "check coverage tests and reports"
 after_success:
   - coveralls
