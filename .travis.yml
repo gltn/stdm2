@@ -61,12 +61,12 @@ deploy:
       on_success: always
       recipients: 
         - kngeno.kevin@gmail.com
-  provider: pages
-  skip_cleanup: true
-  on: 
-    branch: master
-    tags: true
-  provider: releases
+  - provider: pages
+    skip_cleanup: true
+    on: 
+      branch: master
+      tags: true
+  - provider: releases
     user: $USER
     password: $PASSWORD
     file:
