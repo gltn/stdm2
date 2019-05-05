@@ -16,7 +16,7 @@ install:
 script: 
 - sphinx-build -Wv docs/source docs/build/html
 - py.test --cov=stdm/hello/test_meter.py
-
+# check coveralls coverage again
 
 after_success: 
   - coveralls
