@@ -3,19 +3,19 @@ sudo: false
 language: python
 
 python: 
-  - "3.6"
+  - '3.6'
 
 install: 
-- "pip install -U pip"
-- "pip install -r requirements.txt"
-- "pip install pytest"
-- "pip install pytest-cov"
-- "pip install coveralls"
+- pip3 install -U pip
+- pip3 install -r requirements.txt
+- pip3 install pytest
+- pip3 install pytest-cov
+- pip3 install coveralls
 
 
 script: 
-- "sphinx-build -Wv docs/source docs/build/html"
-- "py.test --cov=stdm/hello/test_meter.py"
+- sphinx-build -Wv docs/source docs/build/html
+- py.test --cov=stdm/hello/test_meter.py
 
 
 after_success: 
