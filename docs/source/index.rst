@@ -11,9 +11,21 @@ Welcome to stdm2's documentation!
    :caption: Contents:
 
 
+TestAPI Plugin
+=================================
+.. automodule:: tests.test_plugin
+   :members:
+
+TestAPI Primes
+=================================
+.. automodule:: tests.test_primes
+   :members:
+
+.. autoclass:: PrimesTestCase
+   :members: test_is_five_prime
 
 Indices and tables
-==================
+=================================
 
 * :ref:`genindex`
 * :ref:`modindex`
