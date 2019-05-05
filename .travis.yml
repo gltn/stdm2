@@ -2,36 +2,37 @@ sudo: false
 
 language: python
 
-python:
-- '3.6'
+python: 
+  - "3.6"
 
-install:
-- pip install -U pip
-- pip install -r requirements.txt
-- pip install pytest
-- pip install pytest-cov
-- pip install coveralls
+install: 
+- "pip install -U pip"
+- "pip install -r requirements.txt"
+- "pip install pytest"
+- "pip install pytest-cov"
+- "pip install coveralls"
 
-before_script:
-"before script"
-script:
-- sphinx-build -Wv docs/source docs/build/html
-- py.test --cov=stdm/hello/test_meter.py
-"check coverage tests and reports"
-after_success:
-- coveralls
 
-deploy:
-  provider: pages
-  skip_cleanup: true
+script: 
+- "sphinx-build -Wv docs/source docs/build/html"
+- "py.test --cov=stdm/hello/test_meter.py"
+
+
+after_success: 
+  - coveralls
+
+deploy: 
   github_token: $STDM_TOKEN
   local_dir: docs/build/html
-  on:
-    tags: true
-    branch: master
-  notifications:
-    email:
-      recipients:
-      - kngeno.kevin@gmail.com
-      on_success: always
+  notifications: 
+    email: 
       on_failure: always
+      on_success: always
+      recipients: 
+        - kngeno.kevin@gmail.com
+  provider: pages
+  skip_cleanup: true
+  true: 
+    branch: master
+    tags: true
+
