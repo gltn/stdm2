@@ -36,8 +36,7 @@ script:
 - coverage run stdm/tests/test_plugin.py
 
 - coverage report -m
-- mkdir stdm
-- ln stdm2 stdm/
+
 - tar czpvf stdm-${TRAVIS_TAG:-dev}.tar.gz stdm
 - ls -l stdm-*.tar.gz stdm-*.zip
 
