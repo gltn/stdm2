@@ -59,8 +59,8 @@ after_success:
 
 before_deploy:
   # set up git user name and tag this commit
-  - git config --local user.name "kngeno"
-  - git config --local user.email "kngeno.kevin@gmail.com"
+  # - git config --local user.name "kngeno"
+  # - git config --local user.email "kngeno.kevin@gmail.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
 
