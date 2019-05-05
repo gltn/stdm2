@@ -1,21 +1,25 @@
 sudo: false
 
 language: python
-python: - '3.6'
+
+python:
+- '3.6'
+
 install:
-  - pip install -U pip
-  - pip install -r requirements.txt
-  - pip install pytest
-  - pip install pytest-cov
-  - pip install coveralls
+- pip install -U pip
+- pip install -r requirements.txt
+- pip install pytest
+- pip install pytest-cov
+- pip install coveralls
 
 before_script:
-
+"before script"
 script:
-  - sphinx-build -Wv docs/source docs/build/html
-
-  after_success:
-  - coveralls
+- sphinx-build -Wv docs/source docs/build/html
+- py.test --cov=stdm/hello/test_meter.py
+"check coverage tests and reports"
+after_success:
+- coveralls
 
 deploy:
   provider: pages
@@ -28,6 +32,6 @@ deploy:
   notifications:
     email:
       recipients:
-        - kngeno.kevin@gmail.com
+      - kngeno.kevin@gmail.com
       on_success: always
       on_failure: always
