@@ -38,11 +38,13 @@ script:
 - coverage report -m
 
 - tar czpvf stdm-${TRAVIS_TAG:-dev}.tar.gz stdm
+- zip -9 -r stdm-${TRAVIS_TAG:-dev}.zip stdm
 - ls -l stdm-*.tar.gz stdm-*.zip
 
 after_success: 
   - coveralls
-  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/public_html/"
+  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/master/"
+  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/tags/"
 
 before_deploy:
   # set up git user name and tag this commit
