@@ -21,6 +21,15 @@ language: python
 python: 
   - '3.6'
 
+before_install:
+- docker version
+- docker-compose version
+- docker-compose up -d
+- docker-compose ps
+- sleep 10
+- docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
+- docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
+
 install: 
 - pip3 install -U pip
 - pip3 install -r requirements.txt
@@ -29,14 +38,16 @@ install:
 - pip3 install coveralls
 
 
-script: 
-# - sphinx-build -Wv docs/source docs/build/html
-
-
+script:
+- docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
+- docker-compose exec qgis-testing-environment sh -c "black --check stdm"
+- docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
+- sphinx-build -Wv docs/source docs/build/html
+# coverage
 - coverage run stdm/tests/test_plugin.py
-
+# create coverage report
 - coverage report -m
-
+# zip files
 - tar czpvf stdm-${TRAVIS_TAG:-dev}.tar.gz stdm
 - zip -9 -r stdm-${TRAVIS_TAG:-dev}.zip stdm
 - ls -l stdm-*.tar.gz stdm-*.zip
