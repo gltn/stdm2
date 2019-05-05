@@ -15,9 +15,11 @@ install:
 
 script: 
 - sphinx-build -Wv docs/source docs/build/html
-- py.test --cov=stdm/hello/test_meter.py
+# - py.test --cov=stdm/hello/test_meter.py
 # check coveralls coverage again
-- repo_token: $repo_token
+# - repo_token: $repo_token
+- coverage run stdm/hello/meter.py
+- coverage report -m
 
 after_success: 
   - coveralls
