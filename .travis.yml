@@ -14,7 +14,7 @@ install:
 
 
 script: 
-- sphinx-build -Wv docs/source docs/build/html
+# - sphinx-build -Wv docs/source docs/build/html
 
 
 - coverage run stdm/tests/test_plugin.py

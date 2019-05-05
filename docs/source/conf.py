@@ -16,9 +16,12 @@
 
 
 # -- Project information -----------------------------------------------------
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..'))
 
 project = 'stdm2'
-copyright = '2019, kngeno'
+copyright = '2019, GLTN'
 author = 'kngeno'
 
 # The full version, including alpha/beta/rc tags

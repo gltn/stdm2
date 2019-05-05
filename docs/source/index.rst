@@ -13,12 +13,12 @@ Welcome to stdm2's documentation!
 
 TestAPI Plugin
 =================================
-.. automodule:: tests.test_plugin
+.. automodule:: test_plugin
    :members:
 
 TestAPI Primes
 =================================
-.. automodule:: tests.test_primes
+.. automodule:: test_primes
    :members:
 
 .. autoclass:: PrimesTestCase
