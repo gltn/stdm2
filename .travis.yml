@@ -1,4 +1,20 @@
 sudo: false
+services: 
+  - docker
+    
+addons:
+  apt:
+    packages:
+      - docker-ce
+    
+env:
+  global:
+    - QGIS_IMAGE=qgis/qgis
+    - QGIS_VERSION_TAG=final-3_4_4
+    - PLUGIN_NAME=stdm
+    - PG_IMAGE=gkahiu/docker-postgis-stdm
+    - PG_VERSION_TAG=10
+    - DOCKER_QGIS_TEST_DIR=tests_directory
 
 language: python
 
@@ -20,9 +36,21 @@ script:
 - coverage run stdm/tests/test_plugin.py
 
 - coverage report -m
+- mkdir stdm
+- ln stdm2 stdm/
+- tar czpvf stdm-${TRAVIS_TAG:-dev}.tar.gz stdm
+- ls -l stdm-*.tar.gz stdm-*.zip
 
 after_success: 
   - coveralls
+  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/public_html/"
+
+before_deploy:
+  # set up git user name and tag this commit
+  - git config --local user.name "kngeno"
+  - git config --local user.email "kngeno.kevin@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 
 deploy: 
   github_token: $STDM_TOKEN
@@ -35,7 +63,19 @@ deploy:
         - kngeno.kevin@gmail.com
   provider: pages
   skip_cleanup: true
-  true: 
+  on: 
     branch: master
     tags: true
+  provider: releases
+    user: $USER
+    password: $PASSWORD
+    file:
+      - stdm-*.tar.gz
+      - stdm-*.zip
+    file_glob: true
+    skip_cleanup: true
+    on:
+      tags: true
 
+after_deploy:
+- ls -l stdm-*.tar.gz
