@@ -10,7 +10,11 @@ Welcome to stdm2's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+    Preface
+    Introduction
+    APIs
+    Use
+    Contributing
 
 Indices and tables
 ==================

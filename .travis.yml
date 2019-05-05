@@ -16,9 +16,9 @@ install:
 script: 
 - sphinx-build -Wv docs/source docs/build/html
 
-- coverage run stdm/tests/test_primes.py
+
 - coverage run stdm/tests/test_plugin.py
-- coverage combine
+
 - coverage report -m
 
 after_success: 
