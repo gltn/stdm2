@@ -52,16 +52,11 @@ before_deploy:
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
 
-deploy: 
-  github_token: $STDM_TOKEN
-  local_dir: docs/build/html
-  notifications: 
-    email: 
-      on_failure: always
-      on_success: always
-      recipients: 
-        - kngeno.kevin@gmail.com
+deploy:  
   - provider: pages
+    github_token: $STDM_TOKEN
+    local_dir: docs/build/html
+    
     skip_cleanup: true
     on: 
       branch: master
@@ -79,3 +74,10 @@ deploy:
 
 after_deploy:
 - ls -l stdm-*.tar.gz
+
+notifications: 
+  email: 
+    on_failure: always
+    on_success: always
+    recipients: 
+      - kngeno.kevin@gmail.com
