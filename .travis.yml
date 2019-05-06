@@ -43,6 +43,7 @@ script:
 # - docker-compose exec qgis-testing-environment sh -c "black --check stdm" # failed - no stdm directory
 - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
 - sphinx-build -Wv docs/source docs/build/html
+- sphinx-build -b html docs/source/ docs/build/
 # coverage
 - coverage run stdm/tests/test_plugin.py
 # create coverage report
