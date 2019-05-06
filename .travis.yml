@@ -72,7 +72,7 @@ deploy:
     skip_cleanup: true
     on: 
       branch: master
-      tags: true
+
   - provider: releases
     user: $USER
     password: $PASSWORD
@@ -83,6 +83,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
+      branch: master
 
 after_deploy:
 - ls -l stdm-*.tar.gz
