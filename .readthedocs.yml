@@ -11,4 +11,6 @@ sphinx:
 formats: all
 python:
   version: 3.6
-requirements_file: null
+  install:
+    - requirements: requirements.txt
+# requirements_file: null
