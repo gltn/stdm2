@@ -37,6 +37,8 @@ install:
 - pip3 install pytest-cov
 - pip3 install coveralls
 
+before_script:
+- chmod +x scripts/
 
 script:
 - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
@@ -49,19 +51,17 @@ script:
 # create coverage report
 - coverage report -m
 # zip files
-- tar czpvf stdm-${TRAVIS_TAG:-dev}.tar.gz stdm
+- tar czpvf stdm-${TRAVIS_BRANCH:-dev}.tar.gz stdm
 - zip -9 -r stdm-${TRAVIS_TAG:-dev}.zip stdm
 - ls -l stdm-*.tar.gz stdm-*.zip
 
-after_success: 
-  - coveralls
-  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/master/"
-  # "curl -T index.html -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_ADDRESS/tags/"
+after_success:
+# 
+- coveralls
+# 
 
 before_deploy:
-  # set up git user name and tag this commit
-  # - git config --local user.name "kngeno"
-  # - git config --local user.email "kngeno.kevin@gmail.com"
+
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   # - git tag $TRAVIS_TAG
 
@@ -69,11 +69,23 @@ deploy:
   - provider: pages
     github_token: $STDM_TOKEN
     local_dir: docs/build/html
-
     skip_cleanup: true
     on: 
       branch: master
 
+  - provider: script
+    script: ./scripts/deploy_master.sh
+    skip_cleanup: true
+    on:
+      branch: master
+  
+  - provider: script
+    script: ./scripts/deploy_tags.sh
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
+      
   - provider: releases
     user: $USER
     password: $PASSWORD
