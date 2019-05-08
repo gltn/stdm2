@@ -26,6 +26,7 @@ author = 'kngeno'
 
 # The full version, including alpha/beta/rc tags
 release = '2.0'
+version = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,8 +38,14 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc',
+    'epub2'
 ]
+
+todo_include_todos = True
+source_suffix = '.rst'
+master_doc = 'index'
+add_function_parentheses = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -46,7 +53,22 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = [
+	#Ignore Mercurial repo.
+	'.hg',
+	#Ignore setup.py output.
+	'build',
+	'dist',
+	'CodeChat.egg-info',
+	#Ignore Sphinx output.
+	'_build',
+	#Ignore this file’s output.
+	'sphinx-enki-info.txt',
+	#Ignore file from external web site.
+	'ez_setup.py',
+	#Ignore HTML – the license and test output.
+	'**.html',
+]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -76,3 +98,44 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = []
+
+# -- Options for Epub output ---------------------------------------------------
+
+epub_title = u'STDM 2.0'
+epub_author = u'GLTN'
+epub_publisher = u'GLTN'
+epub_copyright = u'2019, GLTN'
+
+epub_theme = 'epub2'
+
+# The scheme of the identifier. Typical schemes are ISBN or URL.
+#epub_scheme = ''
+
+# The unique identifier of the text. This can be a ISBN number
+# or the project homepage.
+#epub_identifier = ''
+
+# A unique identification for the text.
+#epub_uid = ''
+
+# A tuple containing the cover image and cover page html template filenames.
+epub_cover = ("_static/cover.png", "epub-cover.html")
+
+# HTML files that should be inserted before the pages created by sphinx.
+# The format is a list of tuples containing the path and title.
+#epub_pre_files = []
+
+# HTML files shat should be inserted after the pages created by sphinx.
+# The format is a list of tuples containing the path and title.
+#epub_post_files = []
+
+# A list of files that should not be packed into the epub file.
+epub_exclude_files = ['_static/opensearch.xml', '_static/doctools.js',
+    '_static/jquery.js', '_static/searchtools.js', '_static/underscore.js',
+    '_static/basic.css', 'search.html', '_static/websupport.js']
+
+# The depth of the table of contents in toc.ncx.
+epub_tocdepth = 2
+
+# Allow duplicate toc entries.
+epub_tocdup = False
