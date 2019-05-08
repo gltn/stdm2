@@ -64,7 +64,7 @@ after_success:
 # 
 
 before_deploy:
-
+- chmod +x -R scripts/
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   # - git tag $TRAVIS_TAG
 
@@ -78,13 +78,13 @@ deploy:
       branch: master
 
   - provider: script
-    script: ./scripts/deploy_master.sh
+    script: bash scripts/deploy_master.sh
     skip_cleanup: true
     on:
       branch: master
   
   - provider: script
-    script: ./scripts/deploy_tags.sh
+    script: bash scripts/deploy_tags.sh
     skip_cleanup: true
     on:
       tags: true
