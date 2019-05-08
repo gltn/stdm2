@@ -40,8 +40,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'sphinx.ext.autodoc',
-    'epub2'
+    'sphinx.ext.autodoc'
 ]
 
 todo_include_todos = True
