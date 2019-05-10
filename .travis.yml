@@ -15,9 +15,6 @@ env:
     - PG_IMAGE=gkahiu/docker-postgis-stdm
     - PG_VERSION_TAG=10
     - DOCKER_QGIS_TEST_DIR=tests_directory
-    - FTP_USER="znftp"
-    - FTP_PASSWORD="znftp"
-    - FTP_ADDRESS="zncbnrm.virtualkenya.org"
 
 language: python
 
