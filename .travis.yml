@@ -36,9 +36,6 @@ before_install:
 install: 
 - pip3 install -U pip
 - pip3 install -r requirements.txt
-- pip3 install pytest
-- pip3 install pytest-cov
-- pip3 install coveralls
 
 before_script:
 - chmod +x scripts/
