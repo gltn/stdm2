@@ -1,4 +1,0 @@
-pytest-cov
-black
-pytest
-coveralls
