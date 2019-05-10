@@ -15,6 +15,9 @@ env:
     - PG_IMAGE=gkahiu/docker-postgis-stdm
     - PG_VERSION_TAG=10
     - DOCKER_QGIS_TEST_DIR=tests_directory
+    - FTP_USER=$FTP_USER
+    - FTP_PASSWORD=$FTP_PASSWORD
+    - FTP_ADDRESS=$FTP_ADDRESS
 
 language: python
 
