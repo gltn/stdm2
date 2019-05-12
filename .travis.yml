@@ -16,28 +16,27 @@ env:
     - PG_VERSION_TAG=10
     - DOCKER_QGIS_TEST_DIR=tests_directory
 
-    
+
 language: python
 
 python: 
   - '3.6'
 
 before_install:
-- docker version
-- docker-compose version
-- docker-compose up -d
-- docker-compose ps
-- sleep 10
-- docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
-- docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
+  - docker version
+  - docker-compose version
+  - docker-compose up -d
+  - docker-compose ps
+  - sleep 10
+  - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
+  - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
 
 install: 
-# 
+  # 
   - pip3 install -U pip
-- pip3 install -r requirements.txt
+  - pip3 install -r requirements.txt
 
-before_script:
-# 
+
 
 script:
 - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
@@ -52,16 +51,16 @@ script:
 
 
 after_success:
-#
-- coveralls
-# sphinx api docs build
-# sphinx user manual build
-- sphinx-build -Wv docs/source docs/build/html
-- sphinx-build -b html docs/source/ docs/build/
+  #
+  - coveralls
+  # sphinx api docs build
+  # sphinx user manual build
+  - sphinx-build -Wv docs/source docs/build/html
+  - sphinx-build -b html docs/source/ docs/build/
 
 before_deploy:
-- chmod +x -R scripts/
-- ls -l stdm-*.tar.gz stdm-*.zip
+  - chmod +x -R scripts/
+  - ls -l stdm-*.tar.gz stdm-*.zip
 
 deploy:  
   - provider: pages
@@ -91,15 +90,15 @@ deploy:
     file:
       - stdm-*.tar.gz
       - stdm-*.zip
-
-      file_glob: true
+    
+    file_glob: true
     skip_cleanup: true
     on:
       tags: true
       branch: master
 
 after_deploy:
-- ls -l stdm-*.tar.gz stdm-*.zip
+  - ls -l stdm-*.tar.gz stdm-*.zip
 
 notifications: 
   email: 
