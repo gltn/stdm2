@@ -60,7 +60,7 @@ after_success:
 
 before_deploy:
   - chmod +x -R scripts/
-  - ls -l stdm-*.tar.gz stdm-*.zip
+
 
 deploy:  
   - provider: pages
