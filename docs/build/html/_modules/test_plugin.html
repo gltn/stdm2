@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>test_plugin &mdash; stdm2 2.0 documentation</title>
+  <title>test_plugin &mdash; STDM 2.0 2.0 documentation</title>
   
 
   
@@ -48,7 +48,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> stdm2
+            <a href="../index.html" class="icon icon-home"> STDM 2.0
           
 
           
@@ -56,6 +56,10 @@
 
           
             
+            
+              <div class="version">
+                1.0
+              </div>
             
           
 
@@ -78,8 +82,18 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro/getting-started-with-stdm.html">Getting Started with STDM 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/import-guide.html">Import Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api-docs/api-doc.html">TestAPI Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-docs/api-doc.html#module-test_primes">TestAPI Primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-docs/api-doc.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
             
           
         </div>
@@ -92,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">stdm2</a>
+          <a href="../index.html">STDM 2.0</a>
         
       </nav>
 
@@ -149,14 +163,14 @@
 <span class="kn">import</span> <span class="nn">psycopg2</span>
 
 
-<div class="viewcode-block" id="PluginTest"><a class="viewcode-back" href="../index.html#test_plugin.PluginTest">[docs]</a><span class="k">class</span> <span class="nc">PluginTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-<div class="viewcode-block" id="PluginTest.setUp"><a class="viewcode-back" href="../index.html#test_plugin.PluginTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginTest"><a class="viewcode-back" href="../api-docs/api-doc.html#test_plugin.PluginTest">[docs]</a><span class="k">class</span> <span class="nc">PluginTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginTest.setUp"><a class="viewcode-back" href="../api-docs/api-doc.html#test_plugin.PluginTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">test_general</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PluginTest.tearDown"><a class="viewcode-back" href="../index.html#test_plugin.PluginTest.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginTest.tearDown"><a class="viewcode-back" href="../api-docs/api-doc.html#test_plugin.PluginTest.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
 
 

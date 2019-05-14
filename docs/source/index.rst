@@ -5,8 +5,7 @@ Welcome to stdm2's documentation!
 .. meta::
    :description lang=en: STDM 2.0 User Manual and API Documentation.
 
-
-`STDM 2.0`_ The Social Tenure Domain Model (STDM) is a propoor land information tool that provides a flexible approach for representing people-land relationships. The tool provides a practical approach for representing these relationships independent of the level of formality, legality and technical accuracy.
+The Social Tenure Domain Model (STDM) is a propoor land information tool that provides a flexible approach for representing people-land relationships. The tool provides a practical approach for representing these relationships independent of the level of formality, legality and technical accuracy.
 
 Some of the functionality provided by the tool include:
 
@@ -29,18 +28,27 @@ First steps
 -----------
 
 * **Getting started**:
-
-
+  :doc:`With STDM <intro/getting-started-with-stdm>` |
 
 * **Importing your existing documentation**:
+  :doc:`Import guide <intro/import-guide>`
 
+First Steps
+=================================
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: First Steps
 
+   intro/getting-started-with-stdm
+   intro/import-guide
+
+
 .. _about-docs:
+
+About STDM 2.0
+=================================
 
 .. toctree::
    :maxdepth: 1
@@ -48,11 +56,17 @@ First steps
 
 .. _user-docs:
 
+User Documentation
+=================================
+
 .. toctree::
    :maxdepth: 2
    :caption: User Documentation
 
 .. _feature-docs:
+
+Feature Documentation
+=================================
 
 .. toctree::
    :maxdepth: 2
@@ -61,8 +75,11 @@ First steps
 
 .. _api-docs:
 
+API Documentation
+=================================
+
 .. toctree::
    :maxdepth: 2
-   :caption: API Documentation:
+   :caption: API Documentation
 
-   _templates/api-doc
+   api-docs/api-doc

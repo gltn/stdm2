@@ -21,9 +21,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../../stdm/tests/'))
-sys.path.insert(0, os.path.abspath('templates/'))
-
-project = 'stdm2'
+project = 'STDM 2.0'
 copyright = '2019, GLTN'
 author = 'kngeno'
 
@@ -57,9 +55,9 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-	#Ignore Mercurial repo.
-	'.hg',
-	#Ignore setup.py output.
+    # Ignore Mercurial repo.
+    '.hg',
+	# Ignore setup.py output.
 	'build',
 	'dist',
 	'CodeChat.egg-info',
