@@ -33,8 +33,7 @@ First steps
 * **Importing your existing documentation**:
   :doc:`Import guide <intro/import-guide>`
 
-First Steps
-=================================
+
 
 .. toctree::
    :maxdepth: 2
@@ -47,8 +46,7 @@ First Steps
 
 .. _about-docs:
 
-About STDM 2.0
-=================================
+
 
 .. toctree::
    :maxdepth: 1
@@ -58,8 +56,7 @@ About STDM 2.0
 
 .. _user-docs:
 
-User Documentation
-=================================
+
 
 .. toctree::
    :maxdepth: 2
@@ -69,8 +66,7 @@ User Documentation
 
 .. _feature-docs:
 
-Feature Documentation
-=================================
+
 
 .. toctree::
    :maxdepth: 2
@@ -81,8 +77,7 @@ Feature Documentation
 
 .. _api-docs:
 
-API Documentation
-=================================
+
 
 .. toctree::
    :maxdepth: 2
