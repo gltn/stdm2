@@ -29,19 +29,16 @@ First steps
 -----------
 
 * **Getting started**:
-  :doc:`With STDM <intro/getting-started-with-stdm>` |
+
+
 
 * **Importing your existing documentation**:
-  :doc:`Import guide <intro/import-guide>`
+
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: First Steps
-
-   _templates/intro/getting-started-with-stdm
-   _templates/intro/import-guide
-
 
 .. _about-docs:
 
