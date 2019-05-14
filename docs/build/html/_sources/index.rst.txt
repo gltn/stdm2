@@ -54,6 +54,8 @@ About STDM 2.0
    :maxdepth: 1
    :caption: About STDM 2.0
 
+   intro/about-stdm
+
 .. _user-docs:
 
 User Documentation
@@ -62,6 +64,8 @@ User Documentation
 .. toctree::
    :maxdepth: 2
    :caption: User Documentation
+
+   user-docs/introduction
 
 .. _feature-docs:
 
@@ -72,6 +76,8 @@ Feature Documentation
    :maxdepth: 2
    :glob:
    :caption: Feature Documentation
+
+   feature-docs/introduction
 
 .. _api-docs:
 
