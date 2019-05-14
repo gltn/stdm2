@@ -1,6 +1,6 @@
 black==19.3b0
 coveralls==1.7.0
-coverage
+coverage==4.5.3
 psycopg2-binary==2.8.2
 # pytest==4.4.1
 pytest-cov==2.6.1
