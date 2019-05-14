@@ -65,9 +65,9 @@ STDM can be installed in two ways:
 
 ### Documentation
 
-- User Manual [https://stdm2.readthedocs.io][User Manual]
+- [User Manual](https://stdm2.readthedocs.io)
 
-- API Documentation [https://stdm2.readthedocs.io][API Documentation]
+- [API Documentation](https://stdm2.readthedocs.io)
 
 ### License
 
