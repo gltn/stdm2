@@ -14,7 +14,7 @@ env:
     - PLUGIN_NAME=stdm
     - PG_IMAGE=gkahiu/docker-postgis-stdm
     - PG_VERSION_TAG=10
-    - DOCKER_QGIS_TEST_DIR=tests_directory
+    - DOCKER_QGIS_TEST_DIR=stdm #tests_directory
 
 
 language: python
@@ -38,7 +38,6 @@ install:
     else
       pip3 install -U pip;
       pip3 install -r requirements.txt;
-      # pip3 install coverage==4.5.3;
       echo "Check dependencies are installed";
     fi
 
