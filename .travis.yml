@@ -36,6 +36,7 @@ install:
   - if [ "$TRAVIS_BUILD_STAGE_NAME" = "True" ]; then
       pip3 install -U pip;
       pip3 install -r requirements.txt;
+      pip3 install coverage==4.5.3;
     else
       echo "Check dependencies are installed";
     fi
