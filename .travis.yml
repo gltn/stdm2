@@ -33,8 +33,12 @@ before_install:
 
 install: 
   # requirements
-  - pip3 install -U pip
-  - pip3 install -r requirements.txt
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "True" ]; then
+      pip3 install -U pip;
+      pip3 install -r requirements.txt;
+    else
+      "Check dependencies are installed";
+    fi
 
 
 
