@@ -38,7 +38,7 @@ install:
     else
       pip3 install -U pip;
       pip3 install -r requirements.txt;
-      pip3 install coverage==4.5.3;
+      # pip3 install coverage==4.5.3;
       echo "Check dependencies are installed";
     fi
 
@@ -46,7 +46,7 @@ install:
 
 script:
 - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
-# - docker-compose exec qgis-testing-environment sh -c "black --check stdm" # failed - no stdm directory
+- docker-compose exec qgis-testing-environment sh -c "black --check stdm" # failed - no stdm directory
 - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
 # coverage test
 - coverage run stdm/tests/test_plugin.py
