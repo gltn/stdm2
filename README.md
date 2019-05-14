@@ -62,7 +62,13 @@ STDM can be installed in two ways:
     > This option will require that PostgreSQL and PostGIS be installed beforehand. In addition, an empty spatially-enabled database needs to have been created prior to using STDM.
     >
     > **Note:** If you have issues when downloading the plugin, first confirm if the network settings are okay. On the QGIS menu go to **“Settings -&gt; Options”** In the **“Options”** dialog box select **“Network”** tab and check your proxy settings are okay. For more details on setting up network options, please read the QGIS documentation available [here](http://docs.qgis.org/testing/en/docs/user_manual/).
-    
+
+### Documentation
+
+- User Manual [https://stdm2.readthedocs.io][User Manual]
+
+- API Documentation [https://stdm2.readthedocs.io][API Documentation]
+
 ### License
 
 STDM is a free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 (GPL v2) as published by the Free Software Foundation. The full GNU General Public License is available in LICENSE.txt or [here](http://www.gnu.org/licenses/gpl-2.0.html).
