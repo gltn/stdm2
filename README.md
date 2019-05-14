@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/kngeno/stdm2.svg?branch=master)](https://travis-ci.org/kngeno/stdm2)
 [![Coverage Status](https://coveralls.io/repos/github/kngeno/stdm2/badge.svg)](https://coveralls.io/github/kngeno/stdm2)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Documentation Status](https://readthedocs.org/projects/stdm2/badge/?version=latest)](https://stdm2.readthedocs.io/en/latest/?badge=latest)
 [![Join the chat at https://gitter.im/gltn-stdm](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gltn-stdm)
 
