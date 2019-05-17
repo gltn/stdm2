@@ -73,9 +73,8 @@ after_success:
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
       echo "branch anc coverage true";
-    elseif
-      [[ $COVERAGE == true ]];
     else
+      [[ $COVERAGE == true ]];
       coveralls;
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
