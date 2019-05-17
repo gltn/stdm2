@@ -62,13 +62,13 @@ script:
 
 after_success:
   - |
-    if [[ $COVERAGE == true && $TRAVIS_BRANCH == "master" ]]; then
+    if [[ $TRAVIS_BRANCH == "master" ]]; then
       coveralls;
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
       echo "branch and coverage true";
     else
-      [[ $COVERAGE == true && $TRAVIS_BRANCH != "master" ]];
+      [[ $TRAVIS_BRANCH != "master" ]];
       echo "no coverage report stats";
     fi
   
@@ -76,45 +76,39 @@ before_deploy:
   - chmod +x -R scripts/
 
 deploy:
-  - |
-    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
-      - provider: pages
-        github_token: $STDM_TOKEN
-        local_dir: docs/build/html
-        skip_cleanup: true
-        keep_history: true
-        on: 
-          branch: master
+  - provider: pages
+    github_token: $STDM_TOKEN
+    local_dir: docs/build/html
+    skip_cleanup: true
+    keep_history: true
+    on: 
+      branch: master
 
-      - provider: script
-        script: bash scripts/deploy_master.sh
-        skip_cleanup: true
-        on:
-          branch: master
-      
-      - provider: script
-        script: bash scripts/deploy_tags.sh
-        skip_cleanup: true
-        on:
-          tags: true
-          branch: master
-          
-      - provider: releases
-        user: $USER
-        password: $PASSWORD
-        file:
-          - stdm-*.tar.gz
-          - stdm-*.zip
-        
-        file_glob: true
-        skip_cleanup: true
-        on:
-          tags: true
-          branch: master
-    else
-        echo "did not deploy";
-    fi  
+  - provider: script
+    script: bash scripts/deploy_master.sh
+    skip_cleanup: true
+    on:
+      branch: master
   
+  - provider: script
+    script: bash scripts/deploy_tags.sh
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
+      
+  - provider: releases
+    user: $USER
+    password: $PASSWORD
+    file:
+      - stdm-*.tar.gz
+      - stdm-*.zip
+    
+    file_glob: true
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
 
 after_deploy:
   - ls -l stdm-*.tar.gz stdm-*.zip
