@@ -66,10 +66,13 @@ after_success:
       coveralls;
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
-      echo "branch and coverage true";
+      echo "branch true";
     else
-      [[ $TRAVIS_BRANCH != "master" ]];
-      echo "no coverage report stats";
+      [[ $TRAVIS_BRANCH != "master" && $TRAVIS_TAG == true]];
+      coveralls;
+      sphinx-build -Wv docs/source docs/build/html;
+      sphinx-build -b html docs/source/ docs/build;
+      echo "tag true";
     fi
   
 before_deploy:
