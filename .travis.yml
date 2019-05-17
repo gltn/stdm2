@@ -113,24 +113,6 @@ after_deploy:
     fi
   - ls -l stdm-*.tar.gz stdm-*.zip
 
-
-jobs:
-  include:
-    - &before_install
-      stage: "Before install"
-      before_install: true
-      script: true
-      
-    - stage: "Install"
-      install: true
-      script: true
-      
-    - stage: "Script"
-    - stage: "After success"
-    - stage: "Before deploy"
-    - stage: "Deploy"
-    - stage: "After deploy"
-
 notifications: 
   email: 
     on_failure: never #always
