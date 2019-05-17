@@ -1,12 +1,20 @@
 sudo: false
 services: 
   - docker
-    
+
+language: python
+
+python: 
+  - '3.6'
+
+git:
+  depth: false
+
 addons:
   apt:
     packages:
       - docker-ce
-    
+
 env:
   global:
     - QGIS_IMAGE=qgis/qgis
@@ -16,11 +24,10 @@ env:
     - PG_VERSION_TAG=10
     - DOCKER_QGIS_TEST_DIR=tests_directory
 
-
-language: python
-
-python: 
-  - '3.6'
+matrix:
+  include:
+    - python: '3.6'
+    - python: '3.4'
 
 before_install:
   - docker version
@@ -36,7 +43,6 @@ install:
   - pip3 install -U pip;
   - pip3 install -r requirements.txt;
 
-
 script:
 - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
 # - docker-compose exec qgis-testing-environment sh -c "black --check stdm" # failed - no stdm directory
@@ -45,8 +51,6 @@ script:
 - coverage run stdm/tests/test_plugin.py
 # create coverage report
 - coverage report -m
-# 
-
 
 after_success:
   # run coveralls api
@@ -55,10 +59,9 @@ after_success:
   # sphinx user manual build
   - sphinx-build -Wv docs/source docs/build/html
   - sphinx-build -b html docs/source/ docs/build/
-
+  
 before_deploy:
   - chmod +x -R scripts/
-
 
 deploy:  
   - provider: pages
@@ -96,11 +99,16 @@ deploy:
       branch: master
 
 after_deploy:
+  - |
+    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
+      echo "no master pull request"
+    fi
   - ls -l stdm-*.tar.gz stdm-*.zip
 
 notifications: 
   email: 
-    on_failure: always
-    on_success: always
+    on_failure: never #always
+    on_success: never #always
     recipients: 
       - kngeno.kevin@gmail.com
+
