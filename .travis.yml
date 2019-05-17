@@ -27,12 +27,12 @@ env:
 matrix:
   include:
     - python: '3.6'
-    # - python: '3.4' # fails black > 3.4
 
 
+    
 jobs:
   include:
-    - stage: "Before Install"
+    - stage: "Before install"
     - stage: "Install"
     - stage: "Script"
     - stage: "After success"
@@ -41,7 +41,16 @@ jobs:
     - stage: "After deploy"
 
 stages:
-  - name: "Before Install"
+  - before_install
+  - install
+  - script
+  - after_success
+  - before_deploy
+  - deploy
+  - after_deploy
+
+
+before_install:
   - docker version
   - docker-compose version
   - docker-compose up -d
@@ -49,23 +58,6 @@ stages:
   - sleep 10
   - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
   - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
-  - name: "Install"
-  # requirements
-  if: ($TRAVIS_BUILD_STAGE_NAME = "Install") AND (NOT (type IN (push, pull_request)))
-  - pip3 install -U pip;
-  - pip3 install -r requirements.txt;
-    
-  - name: deploy
-    if: (branch = develop) AND (NOT(type IN (push, pull_request)))
-
-# before_install:
-#   - docker version
-#   - docker-compose version
-#   - docker-compose up -d
-#   - docker-compose ps
-#   - sleep 10
-#   - docker-compose exec qgis-testing-environment sh -c "qgis_setup.sh ${PLUGIN_NAME}"
-#   - docker-compose exec qgis-testing-environment sh -c "pip3 install -r /${DOCKER_QGIS_TEST_DIR}/requirements.txt"
 
 install: 
   # requirements
