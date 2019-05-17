@@ -61,24 +61,18 @@ script:
 - coverage report -m
 
 after_success:
-  # run coveralls api
-  # - coveralls
-  # # sphinx api docs build
-  # # sphinx user manual build
-  # - sphinx-build -Wv docs/source docs/build/html
-  # - sphinx-build -b html docs/source/ docs/build/
   - |
     if [[ $COVERAGE == true && $TRAVIS_BRANCH == "master" ]]; then
       coveralls;
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
-      echo "branch anc coverage true";
+      echo "branch and coverage true..."
     else
-      [[ $COVERAGE == true ]];
+      [[ $COVERAGE == true && $TRAVIS_BRANCH != "master" ]];
       coveralls;
       sphinx-build -Wv docs/source docs/build/html;
       sphinx-build -b html docs/source/ docs/build;
-      echo "coverage true";
+      echo "only coverage true."
     fi
   
 before_deploy:
@@ -106,24 +100,7 @@ deploy:
       tags: true
       branch: master
       
-  - provider: releases
-    user: $USER
-    password: $PASSWORD
-    file:
-      - stdm-*.tar.gz
-      - stdm-*.zip
-    
-    file_glob: true
-    skip_cleanup: true
-    on:
-      tags: true
-      branch: master
-
 after_deploy:
-  - |
-    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
-      echo "no master pull request"
-    fi
   - ls -l stdm-*.tar.gz stdm-*.zip
 
 notifications: 
