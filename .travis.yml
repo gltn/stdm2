@@ -62,11 +62,17 @@ script:
 
 after_success:
   # run coveralls api
-  - coveralls
-  # sphinx api docs build
-  # sphinx user manual build
-  - sphinx-build -Wv docs/source docs/build/html
-  - sphinx-build -b html docs/source/ docs/build/
+  # - coveralls
+  # # sphinx api docs build
+  # # sphinx user manual build
+  # - sphinx-build -Wv docs/source docs/build/html
+  # - sphinx-build -b html docs/source/ docs/build/
+  - |
+    if [[ $COVERAGE == true && $TRAVIS_BRANCH == "master" ]]; then
+      coveralls
+      sphinx-build -Wv docs/source docs/build/html
+      sphinx-build -b html docs/source/ docs/build/
+    fi
   
 before_deploy:
   - chmod +x -R scripts/
