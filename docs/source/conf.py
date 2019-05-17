@@ -40,7 +40,9 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.ifconfig'
 ]
 
 todo_include_todos = True
