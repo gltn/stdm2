@@ -64,7 +64,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs/build/
 
 # PyBuilder
 target/
@@ -90,3 +90,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+#
+base/
+.vscode/
+.pytest_cache/
