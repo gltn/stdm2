@@ -19,7 +19,10 @@ email                : stdm@unhabitat.org
  ***************************************************************************/
 """
 
-from abc import ABC
+from abc import (
+    ABC,
+    abstractmethod
+)
 
 from qgis.gui import QgisInterface
 
@@ -40,6 +43,7 @@ class StdmModule(ABC):
         """
         self._iface = iface
         self._name = ''
+        self._key = ''
 
     @property
     def qgis_iface(self):
@@ -49,6 +53,7 @@ class StdmModule(ABC):
         """
         return self._iface
 
+    @abstractmethod
     def name(self):
         """
         :return: Returns the friendly display name of the module that will
@@ -58,16 +63,26 @@ class StdmModule(ABC):
         """
         return self._name
 
-    def _key(self):
+    @abstractmethod
+    def key(self):
         """
-        :return: Returns a unique identifier of the module based on a hash
-        of the name.
+        :return: Returns a unique name that identifies this module. It can,
+        for instance, be a code or shortened display name.
+        Should be overridden by sub-classes.
         :rtype: str
         """
-        if not self.name():
-            return ''
+        return self._key
 
-        return str(hash(self.name()))
+    def __hash__(self):
+        """
+        :return: Returns a hash value computed from the module key. If the
+        key is empty then it will return -1.
+        :rtype: int
+        """
+        if not self.key():
+            return -1
+
+        return hash(self.key())
 
     def __str__(self):
         return self.name()
@@ -76,7 +91,7 @@ class StdmModule(ABC):
     def register(cls):
         """Registers a new module into the collection."""
         if issubclass(cls, StdmModule):
-            mod_key = cls._key()
+            mod_key = cls.key()
             if mod_key:
                 StdmModule.m_types[mod_key] = cls
             else:
@@ -84,15 +99,15 @@ class StdmModule(ABC):
                 pass
 
     @classmethod
-    def get(cls, name):
+    def get(cls, key):
         """
-        :param name: Name of the module.
-        :type name: str
+        :param key: Key (unique identifier) of the module.
+        :type key: str
 
-        :return: Returns the module with the given name from the collection.
+        :return: Returns the module with the given key from the collection.
         :rtype: StdmModule or None
         """
-        return StdmModule.m_types.get(name, None)
+        return StdmModule.m_types.get(key, None)
 
     @classmethod
     def all(cls):

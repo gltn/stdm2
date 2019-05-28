@@ -1,8 +1,8 @@
 """
 /***************************************************************************
-Name                 : StdmModule Unit Tests
-Description          : Unit tests for StdmModule class.
-Date                 : 26-05-2019
+Name                 : GUI tests
+Description          : Suite for running tests in the GUI module.
+Date                 : 28-05-2019
 copyright            : (C) 2019 by UN-Habitat and implementing partners.
                        See the accompanying file CONTRIBUTORS.txt in the root
 email                : stdm@unhabitat.org
@@ -17,20 +17,14 @@ email                : stdm@unhabitat.org
  *                                                                         *
  ***************************************************************************/
 """
-
 import unittest
+import sys
 
-from stdm.gui.module import StdmModule
-from stdm.tests.gui.custom_modules import (
-    ConfigurationModule
-)
+from stdm.tests.gui.test_stdm_module import TestStdmModule
 
 
-class TestStdmModule(unittest.TestCase):
-    def test_get(self):
-        conf_mod = StdmModule.get(ConfigurationModule.key())
-        self.assertIsNotNone(conf_mod)
-
-    def test_all(self):
-        self.assertEqual(len(StdmModule.all()), 2)
-
+def run_all():
+    suite = unittest.TestSuite()
+    # Add your tests here
+    suite.addTests(unittest.makeSuite(TestStdmModule))
+    unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite)
