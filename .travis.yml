@@ -55,7 +55,7 @@ script:
 - docker-compose exec qgis-testing-environment sh -c "cd /${DOCKER_QGIS_TEST_DIR}"
 # - docker-compose exec qgis-testing-environment sh -c "black --check stdm" # failed - no stdm directory
 - docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.test_plugin"
-- docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.gui.test_stdm_module"
+- docker-compose exec qgis-testing-environment sh -c "qgis_testrunner.sh stdm.tests.gui.tests"
 # coverage test
 - coverage run stdm/tests/test_plugin.py
 # create coverage report
