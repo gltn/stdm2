@@ -19,21 +19,26 @@ email                : stdm@unhabitat.org
 """
 
 import unittest
-
 from stdm.gui.module import StdmModule
-
-'''
 from stdm.tests.gui.custom_modules import (
-    ConfigurationModule
+    ConfigurationModule,
+    SecurityModule
 )
-'''
 
 
 class TestStdmModule(unittest.TestCase):
-    def test_get(self):
-        pass # conf_mod = StdmModule.get(ConfigurationModule.key())
-        # self.assertIs(conf_mod, None)
+    def test_get_conf_mode(self):
+        conf_mod = StdmModule.get(ConfigurationModule.key())
+        self.assertIsNotNone(conf_mod)
+
+    def test_get_sec_mode(self):
+        sec_mod = StdmModule.get(SecurityModule.key())
+        self.assertIsNotNone(sec_mod)
+
+    def test_get_none_key(self):
+        ne_mod = StdmModule.get('NON_EXISTENT')
+        self.assertIsNone(ne_mod)
 
     def test_all(self):
-        pass # self.assertEqual(len(StdmModule.all()), 2)
+        self.assertEqual(len(StdmModule.all()), 2)
 

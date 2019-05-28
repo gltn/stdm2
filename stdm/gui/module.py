@@ -23,9 +23,7 @@ from abc import (
     ABC,
     abstractmethod
 )
-
 from PyQt5.QtGui import QIcon
-
 from qgis.gui import QgisInterface
 
 
@@ -37,18 +35,13 @@ class StdmModule(ABC):
     """
     m_types = {}
 
-    def __init__(self, iface, **kwargs):
+    def __init__(self, iface):
         """Class constructor.
         :param iface: Reference to QGIS interface exposing QGisApp. See
         :class: qgis.gui.QgisInterface
         :type iface: QgisInterface
-        **Keyword arguments:**
-        - *icon:* Path to the icon image.
         """
         self._iface = iface
-        icon = kwargs.get('icon', None)
-        if icon is not None:
-            self.icon = icon
 
     @property
     def qgis_iface(self):
@@ -58,23 +51,14 @@ class StdmModule(ABC):
         """
         return self._iface
 
-    @property
+    @abstractmethod
     def icon(self):
         """
-        :return: Returns the QIcon for the module
-        :rtype: str
+        :return: Returns the QIcon corresponding to the module. Needs
+        to be overridden by sub-classes.
+        :rtype: QIcon
         """
-        return self._icon
-
-    @icon.setter
-    def icon(self, path):
-        """
-        Sets path to the icon file.
-        :param path: File path to the icon image.
-        :type path: str
-        """
-        if path and path != self._icon:
-            self._icon = path
+        raise NotImplementedError
 
     @classmethod
     @abstractmethod

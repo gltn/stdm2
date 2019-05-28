@@ -19,7 +19,6 @@ email                : stdm@unhabitat.org
 """
 import unittest
 import sys
-
 from stdm.tests.gui.test_stdm_module import TestStdmModule
 
 

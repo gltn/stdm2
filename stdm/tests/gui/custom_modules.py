@@ -19,7 +19,7 @@ email                : stdm@unhabitat.org
 """
 from stdm.gui.module import StdmModule
 
-'''
+
 class ConfigurationModule(StdmModule):
     @classmethod
     def name(cls):
@@ -31,9 +31,8 @@ class ConfigurationModule(StdmModule):
 
 
 ConfigurationModule.register()
-'''
 
-'''
+
 class SecurityModule(StdmModule):
     @classmethod
     def name(cls):
@@ -45,4 +44,3 @@ class SecurityModule(StdmModule):
 
 
 SecurityModule.register()
-'''
