@@ -42,6 +42,7 @@ class StdmModule(ABC):
         :type iface: QgisInterface
         """
         self._iface = iface
+        self._icon = ''
 
     @property
     def qgis_iface(self):
@@ -50,6 +51,24 @@ class StdmModule(ABC):
         :rtype: QgisInterface
         """
         return self._iface
+
+    @property
+    def icon(self):
+        """
+        :return: Returns the path to the icon file.
+        :rtype: str
+        """
+        return self._icon
+
+    @icon.setter
+    def icon(self, path):
+        """
+        Sets path to the icon file.
+        :param path: File path to the icon image.
+        :type path: str
+        """
+        if path and path != self._icon:
+            self._icon = path
 
     @classmethod
     @abstractmethod
