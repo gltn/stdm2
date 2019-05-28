@@ -28,6 +28,12 @@ class ConfigurationModule(StdmModule):
     def adapt_qaction(self, action):
         action.setCheckable(True)
 
+    def permissions(self):
+        return None
+
+    def icon(self):
+        return None
+
     @classmethod
     def key(cls):
         return 'STDM_CONF'
