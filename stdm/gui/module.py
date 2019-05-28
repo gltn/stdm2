@@ -42,8 +42,6 @@ class StdmModule(ABC):
         :type iface: QgisInterface
         """
         self._iface = iface
-        self._name = ''
-        self._key = ''
 
     @property
     def qgis_iface(self):
@@ -53,25 +51,27 @@ class StdmModule(ABC):
         """
         return self._iface
 
+    @classmethod
     @abstractmethod
-    def name(self):
+    def name(cls):
         """
         :return: Returns the friendly display name of the module that will
         appear in the menu and/or action tooltip in the corresponding action.
         Should be overridden by sub-classes.
         :rtype: str
         """
-        return self._name
+        raise NotImplementedError
 
+    @classmethod
     @abstractmethod
-    def key(self):
+    def key(cls):
         """
         :return: Returns a unique name that identifies this module. It can,
         for instance, be a code or shortened display name.
         Should be overridden by sub-classes.
         :rtype: str
         """
-        return self._key
+        raise NotImplementedError
 
     def __hash__(self):
         """

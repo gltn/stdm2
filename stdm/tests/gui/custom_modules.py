@@ -21,10 +21,12 @@ from stdm.gui.module import StdmModule
 
 
 class ConfigurationModule(StdmModule):
-    def name(self):
+    @classmethod
+    def name(cls):
         return 'STDM Configuration'
 
-    def key(self):
+    @classmethod
+    def key(cls):
         return 'STDM_CONF'
 
 
@@ -32,10 +34,12 @@ ConfigurationModule.register()
 
 
 class SecurityModule(StdmModule):
-    def name(self):
+    @classmethod
+    def name(cls):
         return 'System Security'
 
-    def key(self):
+    @classmethod
+    def key(cls):
         return 'STDM_SEC'
 
 
