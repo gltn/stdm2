@@ -1,7 +1,8 @@
 """
 /***************************************************************************
-Name                 : Test StdmModule Instances
-Description          : Sample StdmModule instances for testing.
+Name                 : Security module
+Description          : Exposes various functionality for managing users,
+                       roles and their access to security objects.
 Date                 : 28-05-2019
 copyright            : (C) 2019 by UN-Habitat and implementing partners.
                        See the accompanying file CONTRIBUTORS.txt in the root
@@ -17,33 +18,7 @@ email                : stdm@unhabitat.org
  *                                                                         *
  ***************************************************************************/
 """
-from stdm.gui.module import StdmModule
 
 
-class ConfigurationModule(StdmModule):
-    @classmethod
-    def name(cls):
-        return 'STDM Configuration'
-
-    def adapt_qaction(self, action):
-        action.setCheckable(True)
-
-    @classmethod
-    def key(cls):
-        return 'STDM_CONF'
-
-
-ConfigurationModule.register()
-
-
-class SecurityModule(StdmModule):
-    @classmethod
-    def name(cls):
-        return 'System Security'
-
-    @classmethod
-    def key(cls):
-        return 'STDM_SEC'
-
-
-SecurityModule.register()
+class PermissionInfo(object):
+    pass

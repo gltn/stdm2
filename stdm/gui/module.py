@@ -24,7 +24,29 @@ from abc import (
     abstractmethod
 )
 from PyQt5.QtGui import QIcon
+from PyQt.QtWidgets import QAction
 from qgis.gui import QgisInterface
+from stdm.core.security import PermissionInfo
+
+
+def create_qaction(stdm_module):
+    """
+    Helper method that creates a QAction from an STDM module object.
+    :param stdm_module: Instance of StdmModule object.
+    :type stdm_module: StdmModule
+    :return: QAction object associated with the StdmModule.
+    :rtype: QAction
+    """
+    sm_act = QAction(stdm_module.qgis_iface)
+    sm_act.setData(stdm_module)
+    icon = stdm_module.icon()
+    if icon is not None:
+        sm_act.setIcon(stdm_module.icon())
+
+    sm_act.setText(stdm_module.name())
+
+    # Further adapt it based on module-defined properties
+    stdm_module.adapt_qaction(sm_act)
 
 
 class StdmModule(ABC):
@@ -42,6 +64,24 @@ class StdmModule(ABC):
         :type iface: QgisInterface
         """
         self._iface = iface
+
+    def adapt_qaction(self, qaction):
+        """
+        Provides the option for sub-classes to further customize the QAction
+        object that will be created from the module. Default implementation
+        does nothing.
+        :param qaction: QAction object that will be customized further.
+        :type qaction: QAction
+        """
+        pass
+
+    def qaction(self):
+        """
+        :return: Return a QAction object associated with this module.
+        Functions can be swapped accordingly for more flexibility.
+        :rtype: QAction
+        """
+        return create_qaction(self)
 
     @property
     def qgis_iface(self):
@@ -66,6 +106,8 @@ class StdmModule(ABC):
         """
         :return: Returns the friendly display name of the module that will
         appear in the menu and/or action tooltip in the corresponding action.
+        This should be translatable text.
+
         Should be overridden by sub-classes.
         :rtype: str
         """
@@ -125,3 +167,31 @@ class StdmModule(ABC):
         :rtype: list
         """
         return StdmModule.m_types.values()
+
+    def show_in_menu(self):
+        """
+        :return: Returns True/False if the module should appear in the QGIS
+        menu. Default implementation is True.
+        :rtype: bool
+        """
+        return True
+
+    def show_in_toolbar(self):
+        """
+        :return: Returns True/False if the module should appear in the QGIS
+        toolbar. Default implementation is True.
+        :rtype: bool
+        """
+        return True
+
+    @abstractmethod
+    def permissions(self):
+        """
+        :return: Returns the security permission object that defines access
+        to this module. This information will be persisted in the database
+        once configuration of the module has been initiated by a user in the
+        STDM_ADMIN role. Return None if the module will not require any
+        user authentication before accessing it.
+        :rtype: PermissionInfo or None
+        """
+        raise NotImplementedError

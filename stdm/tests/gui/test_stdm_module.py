@@ -19,6 +19,7 @@ email                : stdm@unhabitat.org
 """
 
 import unittest
+from qgis.utils import iface
 from stdm.gui.module import StdmModule
 from stdm.tests.gui.custom_modules import (
     ConfigurationModule,
@@ -27,17 +28,22 @@ from stdm.tests.gui.custom_modules import (
 
 
 class TestStdmModule(unittest.TestCase):
-    def test_get_conf_mode(self):
+    def test_get_conf_module(self):
         conf_mod = StdmModule.get(ConfigurationModule.key())
         self.assertIsNotNone(conf_mod)
 
-    def test_get_sec_mode(self):
+    def test_get_sec_module(self):
         sec_mod = StdmModule.get(SecurityModule.key())
         self.assertIsNotNone(sec_mod)
 
-    def test_get_none_key(self):
+    def test_get_none_module(self):
         ne_mod = StdmModule.get('NON_EXISTENT')
         self.assertIsNone(ne_mod)
+
+    def test_action(self):
+        conf_mod_obj = ConfigurationModule(iface)
+        conf_act = conf_mod_obj.qaction()
+        self.assertTrue(conf_act.isCheckable())
 
     def test_all(self):
         self.assertEqual(len(StdmModule.all()), 2)
