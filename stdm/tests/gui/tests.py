@@ -26,5 +26,5 @@ from stdm.tests.gui.test_stdm_module import TestStdmModule
 def run_all():
     suite = unittest.TestSuite()
     # Add your tests here
-    # suite.addTests(unittest.makeSuite(TestStdmModule))
+    suite.addTests(unittest.makeSuite(TestStdmModule))
     unittest.TextTestRunner(verbosity=3, stream=sys.stdout).run(suite)
