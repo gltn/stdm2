@@ -24,6 +24,8 @@ from abc import (
     abstractmethod
 )
 
+from PyQt5.QtGui import QIcon
+
 from qgis.gui import QgisInterface
 
 
@@ -42,7 +44,7 @@ class StdmModule(ABC):
         :type iface: QgisInterface
         """
         self._iface = iface
-        self._icon = ''
+        self._icon = None
 
     @property
     def qgis_iface(self):
@@ -55,7 +57,7 @@ class StdmModule(ABC):
     @property
     def icon(self):
         """
-        :return: Returns the path to the icon file.
+        :return: Returns the QIcon for the module
         :rtype: str
         """
         return self._icon
