@@ -48,6 +48,8 @@ def create_qaction(stdm_module):
     # Further adapt it based on module-defined properties
     stdm_module.adapt_qaction(sm_act)
 
+    return sm_act
+
 
 class StdmModule(ABC):
     """Abstract class containing specific information for an STDM module e.g.
@@ -56,6 +58,7 @@ class StdmModule(ABC):
     Requires to be sub-classed for specific modules.
     """
     m_types = {}
+    qaction_creator = create_qaction
 
     def __init__(self, iface):
         """Class constructor.
@@ -78,10 +81,11 @@ class StdmModule(ABC):
     def qaction(self):
         """
         :return: Return a QAction object associated with this module.
-        Functions can be swapped accordingly for more flexibility.
+        Functions can be swapped accordingly for more flexibility, see
+        class attribute.
         :rtype: QAction
         """
-        return create_qaction(self)
+        return self.qaction_creator()
 
     @property
     def qgis_iface(self):
