@@ -37,14 +37,18 @@ class StdmModule(ABC):
     """
     m_types = {}
 
-    def __init__(self, iface):
+    def __init__(self, iface, **kwargs):
         """Class constructor.
         :param iface: Reference to QGIS interface exposing QGisApp. See
         :class: qgis.gui.QgisInterface
         :type iface: QgisInterface
+        **Keyword arguments:**
+        - *icon:* Path to the icon image.
         """
         self._iface = iface
-        self._icon = None
+        icon = kwargs.get('icon', None)
+        if icon is not None:
+            self.icon = icon
 
     @property
     def qgis_iface(self):
